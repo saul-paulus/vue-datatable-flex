@@ -3,38 +3,38 @@
 [![npm version](https://badge.fury.io/js/vue-datatables-flex.svg)](https://www.npmjs.com/package/vue-datatables-flex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Komponen DataTable yang fleksibel dan responsif untuk **Vue 3** dan **Nuxt 3**, dibangun di atas [DataTables.net](https://datatables.net).
+A flexible and responsive DataTable component for **Vue 3** and **Nuxt 3**, built on top of [DataTables.net](https://datatables.net).
 
-## Fitur
+## Features
 
-- ✅ Support **Vue 3** dan **Nuxt 3**
-- ✅ TypeScript-first dengan type definitions lengkap
-- ✅ Desain **Premium & Modern** (Custom Bootstrap 5)
-- ✅ Auto column adjustment dengan `ResizeObserver` (Intelijen Resize)
-- ✅ Loading overlay bawaan yang ter-animasi
-- ✅ Event: `ready`, `draw`, `select`, `deselect`
-- ✅ Expose public API: `getInstance`, `reload`, `redraw`, `adjustColumns`
-- ✅ Locale Indonesia secara default
-- ✅ Integrasi Bootstrap 5 penuh (Responsive & Select extensions)
-- ✅ Unit & E2E Testing ready (Vitest & Playwright)
+- ✅ Supports **Vue 3** and **Nuxt 3**
+- ✅ TypeScript-first with complete type definitions
+- ✅ **Premium & Modern** Design (Custom Bootstrap 5)
+- ✅ Intelligent Auto-column adjustment using `ResizeObserver`
+- ✅ Built-in animated loading overlay
+- ✅ Events: `ready`, `draw`, `select`, `deselect`
+- ✅ Exposed Public API: `getInstance`, `reload`, `redraw`, `adjustColumns`
+- ✅ Default Indonesian locale (customizable)
+- ✅ Seamless Bootstrap 5 integration (including Responsive & Select extensions)
+- ✅ Ready for Unit & E2E Testing (Vitest & Playwright)
 
 ---
 
-## Instalasi
+## Installation
 
 ```bash
 npm install vue-datatables-flex datatables.net-vue3
 ```
 
-### Peer Dependencies yang Dibutuhkan
+### Required Peer Dependencies
 
 ```bash
 npm install vue datatables.net-vue3
 ```
 
-### CSS (wajib)
+### CSS (Required)
 
-Tambahkan CSS DataTables dan Bootstrap 5 ke project Anda:
+Add DataTables and Bootstrap 5 CSS to your project:
 
 ```bash
 npm install bootstrap datatables.net-bs5
@@ -42,37 +42,37 @@ npm install bootstrap datatables.net-bs5
 
 ---
 
-## Penggunaan di Vue 3
+## Usage in Vue 3
 
-### Cara 1: Registrasi Global (via Plugin)
+### Method 1: Global Registration (via Plugin)
 
 ```ts
 // main.ts
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
 // Import CSS
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
-// Import DataTables extensions (sesuai kebutuhan)
-import 'datatables.net-bs5'
-import 'datatables.net-select-bs5'
-import 'datatables.net-responsive-bs5' // opsional
+// Import DataTables extensions (as needed)
+import "datatables.net-bs5";
+import "datatables.net-select-bs5";
+import "datatables.net-responsive-bs5"; // optional
 
-import { VueDatatablesFlex } from 'vue-datatables-flex'
+import { VueDatatablesFlex } from "vue-datatables-flex";
 
-const app = createApp(App)
-app.use(VueDatatablesFlex)
-// atau dengan nama komponen kustom:
+const app = createApp(App);
+app.use(VueDatatablesFlex);
+// or with a custom component name:
 // app.use(VueDatatablesFlex, { componentName: 'MyTable' })
-app.mount('#app')
+app.mount("#app");
 ```
 
 ```vue
 <!-- MyPage.vue -->
 <template>
-  <DataTableMain
+  <MainDataTable
     :data="rows"
     :columns="columns"
     scroll-y="60vh"
@@ -84,49 +84,50 @@ app.mount('#app')
 
 ---
 
-### Cara 2: Import Langsung (per komponen)
+### Method 2: Direct Import (Local Component)
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
-import { DataTableMain } from 'vue-datatables-flex'
-import type { Column } from 'vue-datatables-flex'
+import { ref } from "vue";
+import { MainDataTable } from "vue-datatables-flex";
+import type { Column } from "vue-datatables-flex";
 
 // Import CSS
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
-import 'datatables.net-bs5'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+import "datatables.net-bs5";
 
 const columns: Column[] = [
-  { data: 'id',    title: 'ID'     },
-  { data: 'name',  title: 'Nama'   },
-  { data: 'email', title: 'Email'  },
+  { data: "id", title: "ID" },
+  { data: "name", title: "Names" },
+  { data: "email", title: "Email" },
   {
-    data: 'status',
-    title: 'Status',
-    render: (data) => `<span class="badge bg-${data === 'active' ? 'success' : 'danger'}">${data}</span>`,
+    data: "status",
+    title: "Status",
+    render: (data) =>
+      `<span class="badge bg-${data === "active" ? "success" : "danger"}">${data}</span>`,
   },
-]
+];
 
 const rows = ref([
-  { id: 1, name: 'Budi',  email: 'budi@mail.com',  status: 'active'   },
-  { id: 2, name: 'Siti',  email: 'siti@mail.com',  status: 'inactive' },
-  { id: 3, name: 'Rudi',  email: 'rudi@mail.com',  status: 'active'   },
-])
+  { id: 1, name: "Budi", email: "budi@mail.com", status: "active" },
+  { id: 2, name: "Siti", email: "siti@mail.com", status: "inactive" },
+  { id: 3, name: "Rudi", email: "rudi@mail.com", status: "active" },
+]);
 
-const tableRef = ref()
+const tableRef = ref();
 
 function onReady(dt: any) {
-  console.log('DataTable ready:', dt)
+  console.log("DataTable ready:", dt);
 }
 
 function onDraw(settings: any) {
-  console.log('Tabel di-draw ulang')
+  console.log("Table redrawn");
 }
 </script>
 
 <template>
-  <DataTableMain
+  <MainDataTable
     ref="tableRef"
     :data="rows"
     :columns="columns"
@@ -140,63 +141,63 @@ function onDraw(settings: any) {
 
 ---
 
-## Penggunaan di Nuxt 3
+## Usage in Nuxt 3
 
-### Cara 1: Nuxt Module (Rekomendasi)
+### Method 1: Nuxt Module (Recommended)
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['vue-datatables-flex/nuxt'],
+  modules: ["vue-datatables-flex/nuxt"],
 
-  // Opsional — konfigurasi module
+  // Optional module configuration
   vueDatatablesFlex: {
-    componentName: 'DataTableMain', // default
-    addCss: false,                  // tambah CSS Bootstrap DT otomatis
+    componentName: "MainDataTable", // default
+    addCss: false, // add Bootstrap DT CSS automatically
   },
 
   css: [
-    'bootstrap/dist/css/bootstrap.min.css',
-    'datatables.net-bs5/css/dataTables.bootstrap5.min.css',
+    "bootstrap/dist/css/bootstrap.min.css",
+    "datatables.net-bs5/css/dataTables.bootstrap5.min.css",
   ],
-})
+});
 ```
 
-Komponen akan otomatis terdaftar sebagai **client-only** (DataTables membutuhkan DOM):
+The component will be automatically registered as **client-only** (DataTables requires the DOM):
 
 ```vue
 <!-- pages/data.vue -->
 <script setup lang="ts">
-import type { Column } from 'vue-datatables-flex'
+import type { Column } from "vue-datatables-flex";
 
 const columns: Column[] = [
-  { data: 'id',   title: 'ID'   },
-  { data: 'nama', title: 'Nama' },
-]
+  { data: "id", title: "ID" },
+  { data: "name", title: "Name" },
+];
 
-const { data: rows } = await useFetch('/api/users')
+const { data: rows } = await useFetch("/api/users");
 </script>
 
 <template>
-  <!-- Komponen otomatis tersedia tanpa import -->
-  <DataTableMain :data="rows ?? []" :columns="columns" />
+  <!-- Component is available globally without import -->
+  <MainDataTable :data="rows ?? []" :columns="columns" />
 </template>
 ```
 
 ---
 
-### Cara 2: Import Manual di Nuxt (tanpa module)
+### Method 2: Manual Import in Nuxt (Without Module)
 
 ```vue
 <!-- components/MyTable.client.vue -->
-<!-- Suffix .client.vue penting agar tidak di-render di server! -->
+<!-- Suffix .client.vue is important to ensure it's client-side only! -->
 <script setup lang="ts">
-import { DataTableMain } from 'vue-datatables-flex'
-import 'datatables.net-bs5'
+import { MainDataTable } from "vue-datatables-flex";
+import "datatables.net-bs5";
 </script>
 
 <template>
-  <DataTableMain v-bind="$attrs" />
+  <MainDataTable v-bind="$attrs" />
 </template>
 ```
 
@@ -204,54 +205,54 @@ import 'datatables.net-bs5'
 
 ## Props
 
-| Prop | Type | Default | Keterangan |
-|------|------|---------|------------|
-| `data` | `unknown[]` | `[]` | Data array untuk tabel (Alias: `dataTableProps`) |
-| `columns` | `Column[]` | `[]` | Definisi kolom (Alias: `columnsProps`) |
-| `options` | `DataTableOptions` | `{}` | Override opsi DataTables core |
-| `scrollY` | `string \| number \| false` | `'65vh'` | Tinggi scroll vertikal (mis: "65vh", "400px") |
-| `scrollX` | `boolean` | `true` | Aktifkan horizontal scroll (otomatis mati jika `responsive: true`) |
-| `responsive` | `boolean` | `false` | Mode responsive (disable horizontal scroll untuk integrasi mobile) |
-| `loading` | `boolean` | `false` | Aktifkan overlay loading |
-| `loadingText` | `string` | `'Memuat data...'` | Teks pada overlay loading |
-| `wrapperClass` | `string` | `''` | Class CSS tambahan untuk wrapper card |
-| `tableClass` | `string` | `''` | Class CSS tambahan untuk elemen `<table>` |
+| Prop           | Type                        | Default             | Description                                                             |
+| -------------- | --------------------------- | ------------------- | ----------------------------------------------------------------------- |
+| `data`         | `unknown[]`                 | `[]`                | Data array for the table (Alias: `dataTableProps`)                      |
+| `columns`      | `Column[]`                  | `[]`                | Column definitions (Alias: `columnsProps`)                              |
+| `options`      | `DataTableOptions`          | `{}`                | Override core DataTables options                                        |
+| `scrollY`      | `string \| number \| false` | `'65vh'`            | Vertical scroll height (e.g., "65vh", "400px")                          |
+| `scrollX`      | `boolean`                   | `true`              | Enable horizontal scroll (automatically disabled if `responsive: true`) |
+| `responsive`   | `boolean`                   | `false`             | Responsive mode (disables horizontal scroll for mobile integration)     |
+| `loading`      | `boolean`                   | `false`             | Enable loading overlay                                                  |
+| `loadingText`  | `string`                    | `'Loading data...'` | Text displayed on the loading overlay                                   |
+| `wrapperClass` | `string`                    | `''`                | Additional CSS class for the wrapper card                               |
+| `tableClass`   | `string`                    | `''`                | Additional CSS class for the `<table>` element                          |
 
 ---
 
 ## Events
 
-| Event | Parameter | Keterangan |
-|-------|-----------|------------|
-| `ready` | `instance: any` | DataTable selesai diinisialisasi |
-| `draw` | `settings: any` | Tabel di-draw ulang |
-| `select` | `items: any[], type: string` | Baris di-select (butuh select extension) |
-| `deselect` | `items: any[], type: string` | Baris di-deselect |
-| `error` | `err: Error` | Error saat inisialisasi |
+| Event      | Parameter                    | Description                                              |
+| ---------- | ---------------------------- | -------------------------------------------------------- |
+| `ready`    | `instance: any`              | Fired when DataTable initialization is finished          |
+| `draw`     | `settings: any`              | Fired when the table is redrawn                          |
+| `select`   | `items: any[], type: string` | Fired when rows are selected (requires select extension) |
+| `deselect` | `items: any[], type: string` | Fired when rows are deselected                           |
+| `error`    | `err: Error`                 | Fired on initialization error                            |
 
 ---
 
-## Expose / Template Ref API
+## Exposed / Template Ref API
 
 ```vue
-<DataTableMain ref="tableRef" ... />
+<MainDataTable ref="tableRef" ... />
 ```
 
 ```ts
-const tableRef = ref()
+const tableRef = ref();
 
-// Akses DataTables instance
-const dt = tableRef.value.getInstance()
-dt.search('keyword').draw()
+// Access DataTables instance
+const dt = tableRef.value.getInstance();
+dt.search("keyword").draw();
 
-// Reload data dari AJAX
-tableRef.value.reload()
+// Reload AJAX data
+tableRef.value.reload();
 
-// Redraw tabel
-tableRef.value.redraw()
+// Redraw table
+tableRef.value.redraw();
 
-// Adjust lebar kolom
-tableRef.value.adjustColumns()
+// Adjust column width
+tableRef.value.adjustColumns();
 ```
 
 ---
@@ -259,58 +260,55 @@ tableRef.value.adjustColumns()
 ## Column Definition
 
 ```ts
-import type { Column } from 'vue-datatables-flex'
+import type { Column } from "vue-datatables-flex";
 
 const columns: Column[] = [
   {
-    data: 'name',
-    title: 'Nama',
-    width: '200px',
-    className: 'fw-bold',
+    data: "name",
+    title: "Name",
+    width: "200px",
+    className: "fw-bold",
     orderable: true,
     searchable: true,
     // Custom render
-    render: (data, type, row) =>
-      `<a href="/users/${row.id}">${data}</a>`,
+    render: (data, type, row) => `<a href="/users/${row.id}">${data}</a>`,
   },
-  // Kolom tanpa data (action buttons)
+  // Column without data (action buttons)
   {
     data: null,
-    title: 'Aksi',
+    title: "Action",
     orderable: false,
     searchable: false,
     render: (data, type, row) =>
-      `<button class="btn btn-sm btn-danger" data-id="${row.id}">Hapus</button>`,
+      `<button class="btn btn-sm btn-danger" data-id="${row.id}">Delete</button>`,
   },
-]
+];
 ```
 
 ---
 
 ## Default Options (Indonesian Locale)
 
-Package ini sudah menyertakan opsi default dengan locale Indonesia. Anda bisa mengoverride sebagian atau semuanya:
+This package includes default options with Indonesian locale. You can override any of them:
 
 ```ts
-import { defaultOptions } from 'vue-datatables-flex'
+import { defaultOptions } from "vue-datatables-flex";
 
-// Lihat semua default options:
-console.log(defaultOptions)
+// View all default options:
+console.log(defaultOptions);
 ```
-
----
 
 ---
 
 ## Testing
 
-Project ini dilengkapi dengan unit testing (Vitest) dan E2E testing (Playwright):
+This project is equipped with unit testing (Vitest) and E2E testing (Playwright):
 
 ```bash
-# Jalankan unit tests
+# Run unit tests
 npm run test:unit
 
-# Jalankan E2E tests
+# Run E2E tests
 npm run test:e2e
 
 # Lint check
@@ -322,19 +320,22 @@ npm run lint
 ## Troubleshooting
 
 ### Error: "DataTables library not set"
-Jika Anda mendapatkan error ini, pastikan Anda telah meregistrasi library DataTables dengan benar. Komponen ini sudah melakukan registrasi otomatis di dalam `MainDataTable.vue`, namun jika Anda menggunakan versi eksternal, pastikan panggil:
+
+If you see this error, ensure you have registered the DataTables library correctly. This component handles registration internally, but if you are using an external version, make sure to call:
 
 ```ts
-import DataTable from 'datatables.net-vue3';
-import DataTablesLib from 'datatables.net-bs5';
+import DataTable from "datatables.net-vue3";
+import DataTablesLib from "datatables.net-bs5";
 DataTable.use(DataTablesLib);
 ```
 
-### CSS Tidak Muncul
-Pastikan Anda mengimpor CSS Bootstrap dan DataTables di `main.ts` atau `nuxt.config.ts` seperti yang dijelaskan di bagian Instalasi.
+### CSS Not Appearing
+
+Ensure you have imported Bootstrap and DataTables CSS in `main.ts` or `nuxt.config.ts` as described in the Installation section.
 
 ---
 
-## License
+## 📄 License
 
-MIT © 2024
+This project is open-source software licensed under the MIT License.
+See [LICENSE](LICENSE)
