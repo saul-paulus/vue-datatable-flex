@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A flexible and responsive DataTable component for **Vue 3** and **Nuxt 3**, built on top of [DataTables.net](https://datatables.net).
+![alt text](image.png)
 
 ## Features
 
