@@ -1,0 +1,47 @@
+[
+  {
+    "id_kaset": "KST-001",
+    "nmuker": "Uker Pusat",
+    "no_kaset": "12345",
+    "tipe_mesin": "ATM",
+    "jenis_kaset": "Reject",
+    "nm_merek": "NCR",
+    "sts_kondisi": 1,
+    "ket_sts_kondisi": "Baik",
+    "sts_kunci": "Ada",
+    "created_at": "2024-03-25T10:00:00Z",
+    "tot_perbaikan": 1,
+    "is_register": 1,
+    "nm_bank": "BRI"
+  },
+  {
+    "id_kaset": "KST-002",
+    "nmuker": "Uker Cabang A",
+    "no_kaset": "67890",
+    "tipe_mesin": "CRM",
+    "jenis_kaset": "Nominal",
+    "nm_merek": "Diebold",
+    "sts_kondisi": 0,
+    "ket_sts_kondisi": "Rusak Ringan",
+    "sts_kunci": "Eror",
+    "created_at": "2024-03-26T11:00:00Z",
+    "tot_perbaikan": 2,
+    "is_register": 0,
+    "nm_bank": "BNI"
+  },
+  {
+    "id_kaset": "KST-003",
+    "nmuker": "Uker Cabang B",
+    "no_kaset": "11223",
+    "tipe_mesin": "ATM",
+    "jenis_kaset": "Nominal",
+    "nm_merek": "OKI",
+    "sts_kondisi": 2,
+    "ket_sts_kondisi": "Rusak Berat",
+    "sts_kunci": "Rusak",
+    "created_at": "2024-03-27T12:00:00Z",
+    "tot_perbaikan": 0,
+    "is_register": 1,
+    "nm_bank": "BCA"
+  }
+]

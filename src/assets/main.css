@@ -1,0 +1,67 @@
+@import './base.css';
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css');
+
+#app {
+  max-width: 1440px; /* Increased for wider tables */
+  margin: 0 auto;
+  padding: var(--space-5);
+  font-weight: var(--fw-normal);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: var(--transition);
+  border-radius: var(--radius-sm);
+}
+
+a:hover {
+  color: var(--primary-hover);
+  background-color: var(--primary-light);
+}
+
+/* Overriding responsive default Vue grid if it exists */
+@media (min-width: 1024px) {
+  body {
+    display: block; /* Removed flex center */
+    padding: var(--space-5) 0;
+  }
+
+  #app {
+    display: block; /* Removed grid layout */
+    padding: 0 var(--space-5);
+  }
+}
+
+/* Helper Classes */
+.text-xs { font-size: var(--fs-xs); }
+.text-sm { font-size: var(--fs-sm); }
+.text-md { font-size: var(--fs-md); }
+.text-center { text-align: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-medium);
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--fs-xs);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  color: white;
+}
