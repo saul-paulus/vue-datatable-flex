@@ -7,8 +7,8 @@ import "datatables.net-responsive-bs5";
 import "datatables.net-select-bs5";
 
 import type { Api } from "datatables.net";
-import type { Column, DataTableOptions } from "../types";
-import { defaultOptions } from "../types";
+import type { Column, DataTableOptions } from "../types/index";
+import { defaultOptions } from "../types/index";
 
 // Datatables.net component: casting to any avoids leaky types (TS4058 / JQueryDataTables)
 const DataTableComponent = DataTableSource as any;

@@ -3,6 +3,8 @@ import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import fs from 'node:fs'
+import path from 'node:path'
 
 // https://vite.dev/guide/build#library-mode
 export default defineConfig({
@@ -11,13 +13,24 @@ export default defineConfig({
     dts({
       // Hanya generate DTS untuk types & plugin, bukan .vue component
       // (DTS dari .vue menyebabkan error TS4058 karena tipe internal datatables)
-      include: ['src/index.ts', 'src/types/**', 'src/plugin.ts', 'src/nuxt.ts'],
+      include: ['src/index.ts', 'src/types/**', 'src/plugin.ts', 'src/nuxt.ts', 'src/runtime/**'],
       exclude: ['src/nuxt.ts.ignore', 'src/**/__tests__/**'],
       outDir: 'dist/types',
       tsconfigPath: './tsconfig.app.json',
       cleanVueFileName: true,
       rollupTypes: false,
     }),
+    // Custom plugin to copy runtime folder to dist
+    {
+      name: 'copy-runtime',
+      closeBundle() {
+        const src = path.resolve(__dirname, 'src/runtime')
+        const dest = path.resolve(__dirname, 'dist/runtime')
+        if (fs.existsSync(src)) {
+          fs.cpSync(src, dest, { recursive: true })
+        }
+      },
+    },
   ],
 
   resolve: {

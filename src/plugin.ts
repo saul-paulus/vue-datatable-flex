@@ -1,5 +1,5 @@
 import type { App, Plugin } from 'vue'
-import DataTableMain from './components/MainDataTable.vue'
+import DataTableMain from './runtime/components/MainDataTable.vue'
 
 // ===================================================
 //  Plugin Options

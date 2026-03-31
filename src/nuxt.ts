@@ -25,10 +25,8 @@ export default defineNuxtModule<ModuleOptions>({
     // Daftarkan komponen secara global (Default: MainDataTable)
     addComponent({
       name: options.componentName || 'MainDataTable',
-      export: 'MainDataTable',
-      // Resolve ke entry point library di folder dist
-      // Ini memastikan module berjalan baik saat di-install sebagai package
-      filePath: resolver.resolve('./vue-datatables-flex.es.js'),
+      // Point langsung ke file .vue di folder runtime
+      filePath: resolver.resolve('./runtime/components/MainDataTable.vue'),
     })
 
     // Tambah CSS jika diminta
