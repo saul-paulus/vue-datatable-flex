@@ -2,12 +2,12 @@
 
 # @saulpaulus17/vue-datatables-flex
 
-**A high-performance, responsive DataTable component for Vue 3 and Nuxt 3.**
+**A high-performance, responsive DataTable component for Vue 3 and Nuxt 3/4.**
 
 [![npm version](https://img.shields.io/npm/v/@saulpaulus17/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@saulpaulus17/vue-datatables-flex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Vue Version](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://vuejs.org/)
-[![Nuxt Version](https://img.shields.io/badge/Nuxt-3.x-00dc82?style=flat-square&logo=nuxt.js)](https://nuxt.com/)
+[![Nuxt Version](https://img.shields.io/badge/Nuxt-3.x%20|%204.x-00dc82?style=flat-square&logo=nuxt.js)](https://nuxt.com/)
 
 [Features](#-features) • [Installation](#-installation) • [Vue 3 Usage](#-usage-in-vue-3) • [Nuxt 3 Usage](#-usage-in-nuxt-3) • [API Reference](#-api-reference)
 
@@ -20,10 +20,10 @@
 - ⚡ **Optimized Performance**: Built on top of [DataTables.net](https://datatables.net) with efficient DOM handling.
 - 🎨 **Premium Aesthetics**: Clean, modern design with custom Bootstrap 5 styling and smooth animations.
 - 📱 **Fully Responsive**: Intelligent column adjustment via `ResizeObserver` and native Responsive extension support.
-- 🧩 **Nuxt 3 Ready**: First-class support with a built-in auto-registering Nuxt module.
+- 🧩 **Nuxt 3 & 4 Ready**: First-class support with a built-in auto-registering Nuxt module.
 - 🛠️ **Developer Friendly**: TypeScript-first with complete type definitions and an exposed public API.
+- 🌐 **SSR Friendly**: SEO-optimized with a smart server-side fallback table (prevents layout shifts).
 - 🌏 **Indonesian Locale**: Pre-configured with Indonesian localization (easily customizable).
-- 🔄 **State Management**: Built-in Select extension support for row selection.
 
 ---
 
@@ -94,9 +94,9 @@ const onReady = (dt: any) => console.log("Table instance:", dt);
 
 ---
 
-## 🟢 Usage in Nuxt 3
+## 🟢 Usage in Nuxt 3 & 4
 
-The simplest way is to use the provided Nuxt module.
+The simplest way is to use the provided Nuxt module. It handles everything including **Universal Rendering (SSR)**.
 
 ### 1. Add to Nuxt Config
 
@@ -126,13 +126,14 @@ const { data: users } = await useFetch("/api/users");
 </script>
 
 <template>
-  <!-- No import needed! Component is auto-registered as client-only -->
+  <!-- No import needed! Component is auto-registered -->
   <MainDataTable :data="users" :columns="columns" />
 </template>
 ```
 
-> [!IMPORTANT]
-> Because DataTables relies on DOM access, it will only render on the client-side. The Nuxt module automatically wraps the component in `<ClientOnly>`.
+> [!TIP]
+> **Universal Rendering Support:**
+> Version 0.1.4+ is fully SSR-aware. While the interactive DataTable initializes on the client, the component renders a semantic HTML table on the server. This ensures your data is **visible to search engines** and avoids Cumulative Layout Shift (CLS).
 
 ---
 
