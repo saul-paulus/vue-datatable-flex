@@ -15,7 +15,7 @@
     "responsive",
     "component"
   ],
-  "author": "ixspx-dev",
+  "author": "saul paulus (ixspx)",
   "license": "MIT",
   "type": "module",
   "main": "./dist/vue-datatables-flex.cjs.js",
