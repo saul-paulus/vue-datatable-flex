@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "./dist/types",
+    "types": ["datatables.net", "jquery"],
     "paths": {
       "@/*": [
         "./src/*"

@@ -1,16 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import DataTable from "datatables.net-vue3";
+import DataTableSource from "datatables.net-vue3";
 import DataTablesLib from "datatables.net-bs5";
 import "datatables.net-responsive-bs5";
 import "datatables.net-select-bs5";
 
+import type { Api } from "datatables.net";
 import type { Column, DataTableOptions } from "../types";
 import { defaultOptions } from "../types";
 
+// Datatables.net component: casting to any avoids leaky types (TS4058 / JQueryDataTables)
+const DataTableComponent = DataTableSource as any;
+
 // Konfigurasi DataTables: Register core dan extension
-DataTable.use(DataTablesLib);
+DataTableSource.use(DataTablesLib);
 
 // Datatables.net menggunakan API yang sangat dinamis (any is unavoidable here)
 // Semua interaksi publik (props/emits) sudah ditype dengan benar di DataTableMain.vue.d.ts
@@ -92,7 +96,7 @@ const containerRef = ref<HTMLElement | null>(null);
 const datatableRef = ref<{ dt: any } | null>(null);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let dtInstance: any = null;
+let dtInstance: Api<any> | null = null;
 let resizeObserver: ResizeObserver | null = null;
 
 // ===================================================
@@ -133,11 +137,13 @@ onMounted(async () => {
 
     // Event: select / deselect (jika pakai select extension)
     dtInstance.on("select", (_e: Event, _dt: unknown, type: string, indexes: number[]) => {
+      if (!dtInstance) return;
       const rows = dtInstance.rows(indexes).data().toArray();
       emit("select", rows, type);
     });
 
     dtInstance.on("deselect", (_e: Event, _dt: unknown, type: string, indexes: number[]) => {
+      if (!dtInstance) return;
       const rows = dtInstance.rows(indexes).data().toArray();
       emit("deselect", rows, type);
     });
@@ -196,11 +202,11 @@ watch(
 // ===================================================
 defineExpose({
   /** Dapatkan DataTables instance untuk akses API langsung */
-  getInstance: () => dtInstance,
+  getInstance: (): Api<any> | null => dtInstance,
   /** Reload data secara manual */
   reload: () => {
     if (!dtInstance) return;
-    dtInstance.ajax?.reload(null, false);
+    dtInstance.ajax?.reload(undefined, false);
   },
   /** Clear & redraw tabel */
   redraw: () => {
@@ -243,7 +249,7 @@ onBeforeUnmount(() => {
       </div>
     </Transition>
 
-    <DataTable
+    <DataTableComponent
       ref="datatableRef"
       :class="['table', 'table-hover', 'table-bordered', 'table-sm', 'w-100', tableClass]"
       :columns="internalColumns as any"
@@ -251,7 +257,7 @@ onBeforeUnmount(() => {
       :options="tableOptions as unknown as any"
     >
       <slot />
-    </DataTable>
+    </DataTableComponent>
   </div>
 </template>
 

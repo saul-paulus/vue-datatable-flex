@@ -66,6 +66,18 @@ export default defineConfig({
           return assetInfo.name ?? 'unknown'
         },
       },
+
+      // Suppress specific warnings from upstream DataTables extensions
+      onwarn(warning, warn) {
+        // Suppress "unused external import" warning for datatables.net-responsive
+        if (
+          warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+          warning.exporter === 'datatables.net-responsive'
+        ) {
+          return
+        }
+        warn(warning)
+      },
     },
 
     // Generate sourcemaps for debugging
