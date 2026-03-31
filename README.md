@@ -1,7 +1,5 @@
 <div align="center">
-
-![vue-datatables-flex banner](file:///home/ixspx/.gemini/antigravity/brain/636e4468-1d1d-4339-8cc0-025008450b88/vue_datatables_flex_banner_1774926822672.png)
-
+![alt text](image.png)
 # vue-datatables-flex
 
 **A high-performance, responsive DataTable component for Vue 3 and Nuxt 3.**
@@ -38,6 +36,7 @@ npm install vue-datatables-flex datatables.net-vue3
 ```
 
 ### Required Peer Dependencies
+
 Ensure your project has the following essentials installed:
 
 ```bash
@@ -49,50 +48,52 @@ npm install vue bootstrap datatables.net-bs5
 ## 📦 Usage in Vue 3
 
 ### Global Registration
+
 Recommended for large applications using the component across multiple pages.
 
 ```ts
 // main.ts
-import { createApp } from 'vue';
-import { VueDatatablesFlex } from 'vue-datatables-flex';
-import App from './App.vue';
+import { createApp } from "vue";
+import { VueDatatablesFlex } from "vue-datatables-flex";
+import App from "./App.vue";
 
 // Import Required CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
 const app = createApp(App);
 app.use(VueDatatablesFlex);
-app.mount('#app');
+app.mount("#app");
 ```
 
 ### Basic Usage
+
 ```vue
 <template>
-  <MainDataTable 
-    :data="userRows" 
-    :columns="userColumns" 
-    scroll-y="500px" 
+  <MainDataTable
+    :data="userRows"
+    :columns="userColumns"
+    scroll-y="500px"
     @ready="onReady"
   />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Column } from 'vue-datatables-flex';
+import { ref } from "vue";
+import type { Column } from "vue-datatables-flex";
 
 const userColumns: Column[] = [
-  { data: 'id', title: 'ID' },
-  { data: 'name', title: 'Full Name' },
-  { data: 'email', title: 'Email Address' },
+  { data: "id", title: "ID" },
+  { data: "name", title: "Full Name" },
+  { data: "email", title: "Email Address" },
 ];
 
 const userRows = ref([
-    { id: 1, name: 'Ahmad', email: 'ahmad@example.com' },
-    { id: 2, name: 'Budi', email: 'budi@example.com' },
+  { id: 1, name: "Ahmad", email: "ahmad@example.com" },
+  { id: 2, name: "Budi", email: "budi@example.com" },
 ]);
 
-const onReady = (dt: any) => console.log('Table instance:', dt);
+const onReady = (dt: any) => console.log("Table instance:", dt);
 </script>
 ```
 
@@ -103,29 +104,31 @@ const onReady = (dt: any) => console.log('Table instance:', dt);
 The simplest way is to use the provided Nuxt module.
 
 ### 1. Add to Nuxt Config
+
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['vue-datatables-flex/nuxt'],
+  modules: ["vue-datatables-flex/nuxt"],
 
   // The module automatically handles client-side registration
   vueDatatablesFlex: {
-    componentName: 'MainDataTable', // Optional: change global name
+    componentName: "MainDataTable", // Optional: change global name
   },
 
   css: [
-    'bootstrap/dist/css/bootstrap.min.css',
-    'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
+    "bootstrap/dist/css/bootstrap.min.css",
+    "datatables.net-bs5/css/dataTables.bootstrap5.min.css",
   ],
 });
 ```
 
 ### 2. Implementation
+
 ```vue
 <!-- pages/users.vue -->
 <script setup lang="ts">
-const columns = [ { data: 'name', title: 'Name' } ];
-const { data: users } = await useFetch('/api/users');
+const columns = [{ data: "name", title: "Name" }];
+const { data: users } = await useFetch("/api/users");
 </script>
 
 <template>
@@ -143,35 +146,36 @@ const { data: users } = await useFetch('/api/users');
 
 ### Props
 
-| Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `data` | `unknown[]` | `[]` | The data array to display (Alias: `dataTableProps`). |
-| `columns` | `Column[]` | `[]` | Column definitions (Alias: `columnsProps`). |
-| `options` | `DataTableOptions`| `{}` | Advanced DataTables configuration overrides. |
-| `loading` | `boolean` | `false` | Shows a beautiful animated loading overlay. |
-| `responsive` | `boolean` | `false` | Enables DataTables Responsive extension. |
-| `scrollY` | `string \| number` | `'65vh'`| Sets the vertical scroll height. |
-| `tableClass` | `string` | `''` | Custom CSS class for the `<table>` element. |
+| Property     | Type               | Default  | Description                                          |
+| :----------- | :----------------- | :------- | :--------------------------------------------------- |
+| `data`       | `unknown[]`        | `[]`     | The data array to display (Alias: `dataTableProps`). |
+| `columns`    | `Column[]`         | `[]`     | Column definitions (Alias: `columnsProps`).          |
+| `options`    | `DataTableOptions` | `{}`     | Advanced DataTables configuration overrides.         |
+| `loading`    | `boolean`          | `false`  | Shows a beautiful animated loading overlay.          |
+| `responsive` | `boolean`          | `false`  | Enables DataTables Responsive extension.             |
+| `scrollY`    | `string \| number` | `'65vh'` | Sets the vertical scroll height.                     |
+| `tableClass` | `string`           | `''`     | Custom CSS class for the `<table>` element.          |
 
 ### Events
 
-| Event | Payload | Description |
-| :--- | :--- | :--- |
-| `@ready` | `(instance: Api)` | Fired when initialization is complete. |
-| `@draw` | `(settings: any)` | Fired whenever the table is redrawn (sort, filter, page). |
-| `@select` | `(items, type)` | Fired when rows are selected (requires `select: true`). |
-| `@error` | `(err: Error)` | Fired if initialization fails. |
+| Event     | Payload           | Description                                               |
+| :-------- | :---------------- | :-------------------------------------------------------- |
+| `@ready`  | `(instance: Api)` | Fired when initialization is complete.                    |
+| `@draw`   | `(settings: any)` | Fired whenever the table is redrawn (sort, filter, page). |
+| `@select` | `(items, type)`   | Fired when rows are selected (requires `select: true`).   |
+| `@error`  | `(err: Error)`    | Fired if initialization fails.                            |
 
 ### Exposed Methods (Template Ref)
+
 Access these by adding a `ref` to your component:
 
 ```ts
 const table = ref<InstanceType<typeof MainDataTable>>();
 
 // Methods
-table.value?.getInstance();    // Get raw DataTables API instance
-table.value?.reload();         // Reload AJAX data (if using server-side)
-table.value?.adjustColumns();  // recalculate column widths
+table.value?.getInstance(); // Get raw DataTables API instance
+table.value?.reload(); // Reload AJAX data (if using server-side)
+table.value?.adjustColumns(); // recalculate column widths
 ```
 
 ---
@@ -181,14 +185,14 @@ table.value?.adjustColumns();  // recalculate column widths
 ```ts
 const columns: Column[] = [
   {
-    data: 'status',
-    title: 'Status',
-    className: 'text-center',
+    data: "status",
+    title: "Status",
+    className: "text-center",
     render: (data) => {
-      const color = data === 'Active' ? 'success' : 'secondary';
+      const color = data === "Active" ? "success" : "secondary";
       return `<span class="badge bg-${color}">${data}</span>`;
-    }
-  }
+    },
+  },
 ];
 ```
 
@@ -205,6 +209,7 @@ Ensure you've imported BOTH the Bootstrap 5 core CSS and the DataTables Bootstra
 ---
 
 ## 📄 License
+
 This package is open-sourced software licensed under the [MIT License](LICENSE).
 
 <div align="center">
