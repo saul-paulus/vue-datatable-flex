@@ -1,10 +1,10 @@
 <div align="center">
 
-# @ixspx-dev/vue-datatables-flex
+# @saulpaulus17/vue-datatables-flex
 
 **A high-performance, responsive DataTable component for Vue 3 and Nuxt 3.**
 
-[![npm version](https://img.shields.io/npm/v/@ixspx-dev/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@ixspx-dev/vue-datatables-flex)
+[![npm version](https://img.shields.io/npm/v/@saulpaulus17/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@saulpaulus17/vue-datatables-flex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Vue Version](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Nuxt Version](https://img.shields.io/badge/Nuxt-3.x-00dc82?style=flat-square&logo=nuxt.js)](https://nuxt.com/)
@@ -32,7 +32,7 @@
 Install the package:
 
 ```bash
-npm install @ixspx-dev/vue-datatables-flex
+npm install @saulpaulus17/vue-datatables-flex
 ```
 
 ### Required Peer Dependencies
@@ -54,7 +54,7 @@ Recommended for large applications using the component across multiple pages.
 ```ts
 // main.ts
 import { createApp } from "vue";
-import { VueDatatablesFlex } from "@ixspx-dev/vue-datatables-flex";
+import { VueDatatablesFlex } from "@saulpaulus17/vue-datatables-flex";
 import App from "./App.vue";
 
 // Import Required CSS
@@ -75,7 +75,7 @@ app.mount("#app");
 
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Column } from "@ixspx-dev/vue-datatables-flex";
+import type { Column } from "@saulpaulus17/vue-datatables-flex";
 
 const userColumns: Column[] = [
   { data: "id", title: "ID" },
@@ -103,7 +103,7 @@ The simplest way is to use the provided Nuxt module.
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ["@ixspx-dev/vue-datatables-flex/nuxt"],
+  modules: ["@saulpaulus17/vue-datatables-flex/nuxt"],
 
   // The module automatically handles client-side registration
   vueDatatablesFlex: {

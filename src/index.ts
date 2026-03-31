@@ -1,5 +1,5 @@
 // ===================================================
-//  vue-datatables-flex
+//  @saulpaulus17/vue-datatables-flex
 //  Entry point — semua ekspor publik library
 // ===================================================
 

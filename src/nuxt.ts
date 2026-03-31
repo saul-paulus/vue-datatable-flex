@@ -5,7 +5,7 @@
  *
  * ```ts
  * export default defineNuxtConfig({
- *   modules: ['vue-datatables-flex/nuxt'],
+ *   modules: ['@saulpaulus17/vue-datatables-flex/nuxt'],
  * })
  * ```
  *
@@ -14,7 +14,7 @@
  * ```ts
  * export default defineNuxtConfig({
  *   modules: [
- *     ['vue-datatables-flex/nuxt', { componentName: 'DataTableMain', addCss:
+ *     ['@saulpaulus17/vue-datatables-flex/nuxt', { componentName: 'DataTableMain', addCss:
  * true }]
  *   ],
  * })
@@ -64,5 +64,5 @@ export default async function vueDatatablesFlexModule(
   }
 
   // Transpile package
-  nuxt.options.build.transpile.push('vue-datatables-flex')
+  nuxt.options.build.transpile.push('@saulpaulus17/vue-datatables-flex')
 }
