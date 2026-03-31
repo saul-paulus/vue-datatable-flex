@@ -13,8 +13,12 @@ import { defaultOptions } from "../types/index";
 // Datatables.net component: casting to any avoids leaky types (TS4058 / JQueryDataTables)
 const DataTableComponent = DataTableSource as any;
 
+const isMounted = ref(false);
+
 // Konfigurasi DataTables: Register core dan extension
-DataTableSource.use(DataTablesLib);
+if (typeof window !== "undefined") {
+  DataTableSource.use(DataTablesLib);
+}
 
 // Datatables.net menggunakan API yang sangat dinamis (any is unavoidable here)
 // Semua interaksi publik (props/emits) sudah ditype dengan benar di DataTableMain.vue.d.ts
@@ -116,6 +120,7 @@ const tableOptions = computed<DataTableOptions>(() => ({
 //  Init
 // ===================================================
 onMounted(async () => {
+  isMounted.value = true;
   await nextTick();
 
   if (!datatableRef.value) return;
@@ -250,6 +255,7 @@ onBeforeUnmount(() => {
     </Transition>
 
     <DataTableComponent
+      v-if="isMounted"
       ref="datatableRef"
       :class="['table', 'table-hover', 'table-bordered', 'table-sm', 'w-100', tableClass]"
       :columns="internalColumns as any"
@@ -258,6 +264,23 @@ onBeforeUnmount(() => {
     >
       <slot />
     </DataTableComponent>
+
+    <!-- SSR Fallback: Render a simple table to avoid layout shift -->
+    <table
+      v-else
+      :class="['table', 'table-hover', 'table-bordered', 'table-sm', 'w-100', 'dataTable', tableClass]"
+    >
+      <thead>
+        <tr>
+          <th v-for="col in internalColumns" :key="col.data || col.title">
+            {{ col.title }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <slot />
+      </tbody>
+    </table>
   </div>
 </template>
 
