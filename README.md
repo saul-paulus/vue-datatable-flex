@@ -105,12 +105,14 @@ The simplest way is to use the provided Nuxt module.
 export default defineNuxtConfig({
   modules: ["@saulpaulus17/vue-datatables-flex/nuxt"],
 
-  // The module automatically handles client-side registration
+  // Optional: Module Configuration
   vueDatatablesFlex: {
-    componentName: "MainDataTable", // Optional: change global name
+    componentName: "MainDataTable", // Use a custom component name
+    addCss: true, // Automatically includes DataTables Bootstrap 5 CSS (default: true)
   },
 
-  css: ["bootstrap/dist/css/bootstrap.min.css", "datatables.net-bs5/css/dataTables.bootstrap5.min.css"],
+  // You still need to include Bootstrap 5 CSS
+  css: ["bootstrap/dist/css/bootstrap.min.css"],
 });
 ```
 

@@ -11,8 +11,8 @@ export default defineConfig({
     dts({
       // Hanya generate DTS untuk types & plugin, bukan .vue component
       // (DTS dari .vue menyebabkan error TS4058 karena tipe internal datatables)
-      include: ['src/index.ts', 'src/types/**', 'src/plugin.ts'],
-      exclude: ['src/nuxt.ts', 'src/nuxt*', 'src/**/__tests__/**'],
+      include: ['src/index.ts', 'src/types/**', 'src/plugin.ts', 'src/nuxt.ts'],
+      exclude: ['src/nuxt.ts.ignore', 'src/**/__tests__/**'],
       outDir: 'dist/types',
       tsconfigPath: './tsconfig.app.json',
       cleanVueFileName: true,

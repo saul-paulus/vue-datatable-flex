@@ -1,68 +1,42 @@
-/**
- * Nuxt Module untuk vue-datatables-flex
- *
- * Cara pakai di nuxt.config.ts:
- *
- * ```ts
- * export default defineNuxtConfig({
- *   modules: ['@saulpaulus17/vue-datatables-flex/nuxt'],
- * })
- * ```
- *
- * Atau dengan opsi:
- *
- * ```ts
- * export default defineNuxtConfig({
- *   modules: [
- *     ['@saulpaulus17/vue-datatables-flex/nuxt', { componentName: 'DataTableMain', addCss:
- * true }]
- *   ],
- * })
- * ```
- */
-
-// NOTE: @nuxt/kit tersedia saat runtime Nuxt, tidak perlu di-install terpisah.
-// Gunakan dynamic import agar tidak error saat build library.
+import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
 
 export interface ModuleOptions {
-  /** Nama komponen global yang didaftarkan (default: "DataTableMain") */
-  componentName?: string
+  /** Nama komponen global yang didaftarkan (default: "MainDataTable") */
+  componentName?: string;
   /** Auto-import CSS Bootstrap DataTables */
-  addCss?: boolean
+  addCss?: boolean;
 }
 
-// Pakai defineNuxtModule dari @nuxt/kit yang tersedia di runtime Nuxt
-export default async function vueDatatablesFlexModule(
-    options: ModuleOptions,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    nuxt: Record<string, any>,
-) {
-  // @ts-expect-error - @nuxt/kit tersedia saat runtime Nuxt, tidak perlu
-  // install terpisah
-  const nuxtKit = await import('@nuxt/kit')
-  const {addComponent, createResolver} = nuxtKit as unknown as {
-    addComponent: (opts: Record<string, unknown>) => Promise<void>
-    createResolver: (base: string) => {
-      resolve: (...paths: string[]) => string
+export default defineNuxtModule<ModuleOptions>({
+  meta: {
+    name: '@saulpaulus17/vue-datatables-flex',
+    configKey: 'vueDatatablesFlex',
+    compatibility: {
+      nuxt: '^3.0.0'
     }
+  },
+  defaults: {
+    componentName: 'MainDataTable',
+    addCss: true
+  },
+  setup(options: ModuleOptions, nuxt: any) {
+    const resolver = createResolver(import.meta.url)
+
+    // Daftarkan komponen secara global (Default: MainDataTable)
+    addComponent({
+      name: options.componentName || 'MainDataTable',
+      export: 'MainDataTable',
+      // Resolve ke entry point library di folder dist
+      // Ini memastikan module berjalan baik saat di-install sebagai package
+      filePath: resolver.resolve('./vue-datatables-flex.es.js'),
+    })
+
+    // Tambah CSS jika diminta
+    if (options.addCss) {
+      nuxt.options.css.push('datatables.net-bs5/css/dataTables.bootstrap5.min.css')
+    }
+
+    // Pastikan library di-transpile oleh Nuxt
+    nuxt.options.build.transpile.push('@saulpaulus17/vue-datatables-flex')
   }
-
-  const resolver = createResolver(import.meta.url)
-  const componentName = options.componentName ?? 'MainDataTable'
-
-  // Daftarkan komponen secara global sebagai client-only
-  await addComponent({
-    name: componentName,
-    filePath: resolver.resolve('./components/MainDataTable.vue'),
-    mode: 'client',
-  })
-
-  // Tambah CSS jika diminta
-  if (options.addCss) {
-    nuxt.options.css.push(
-        'datatables.net-bs5/css/dataTables.bootstrap5.min.css')
-  }
-
-  // Transpile package
-  nuxt.options.build.transpile.push('@saulpaulus17/vue-datatables-flex')
-}
+})
