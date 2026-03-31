@@ -1,10 +1,10 @@
 <div align="center">
-![alt text](image.png)
-# vue-datatables-flex
+
+# @ixspx-dev/vue-datatables-flex
 
 **A high-performance, responsive DataTable component for Vue 3 and Nuxt 3.**
 
-[![npm version](https://img.shields.io/npm/v/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/vue-datatables-flex)
+[![npm version](https://img.shields.io/npm/v/@ixspx-dev/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@ixspx-dev/vue-datatables-flex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Vue Version](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Nuxt Version](https://img.shields.io/badge/Nuxt-3.x-00dc82?style=flat-square&logo=nuxt.js)](https://nuxt.com/)
@@ -29,10 +29,10 @@
 
 ## 🚀 Installation
 
-Install the package and its core dependency:
+Install the package:
 
 ```bash
-npm install vue-datatables-flex datatables.net-vue3
+npm install @ixspx-dev/vue-datatables-flex
 ```
 
 ### Required Peer Dependencies
@@ -54,7 +54,7 @@ Recommended for large applications using the component across multiple pages.
 ```ts
 // main.ts
 import { createApp } from "vue";
-import { VueDatatablesFlex } from "vue-datatables-flex";
+import { VueDatatablesFlex } from "@ixspx-dev/vue-datatables-flex";
 import App from "./App.vue";
 
 // Import Required CSS
@@ -70,17 +70,12 @@ app.mount("#app");
 
 ```vue
 <template>
-  <MainDataTable
-    :data="userRows"
-    :columns="userColumns"
-    scroll-y="500px"
-    @ready="onReady"
-  />
+  <MainDataTable :data="userRows" :columns="userColumns" scroll-y="500px" @ready="onReady" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Column } from "vue-datatables-flex";
+import type { Column } from "@ixspx-dev/vue-datatables-flex";
 
 const userColumns: Column[] = [
   { data: "id", title: "ID" },
@@ -108,17 +103,14 @@ The simplest way is to use the provided Nuxt module.
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ["vue-datatables-flex/nuxt"],
+  modules: ["@ixspx-dev/vue-datatables-flex/nuxt"],
 
   // The module automatically handles client-side registration
   vueDatatablesFlex: {
     componentName: "MainDataTable", // Optional: change global name
   },
 
-  css: [
-    "bootstrap/dist/css/bootstrap.min.css",
-    "datatables.net-bs5/css/dataTables.bootstrap5.min.css",
-  ],
+  css: ["bootstrap/dist/css/bootstrap.min.css", "datatables.net-bs5/css/dataTables.bootstrap5.min.css"],
 });
 ```
 
