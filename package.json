@@ -1,6 +1,6 @@
 {
   "name": "@saulpaulus17/vue-datatables-flex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A flexible, responsive DataTable component for Vue 3 and Nuxt 3, powered by DataTables.net with Bootstrap 5 styling",
   "repository": {
     "type": "git",
