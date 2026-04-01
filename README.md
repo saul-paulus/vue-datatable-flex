@@ -1,29 +1,23 @@
-<div align="center">
-
 # @saulpaulus17/vue-datatables-flex
 
-**A high-performance, responsive DataTable component for Vue 3 and Nuxt 3/4.**
+A high-performance, responsive DataTable component for Vue 3 and Nuxt 3/4.
 
 [![npm version](https://img.shields.io/npm/v/@saulpaulus17/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@saulpaulus17/vue-datatables-flex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Vue Version](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Nuxt Version](https://img.shields.io/badge/Nuxt-3.x%20|%204.x-00dc82?style=flat-square&logo=nuxt.js)](https://nuxt.com/)
 
-[Features](#-features) • [Installation](#-installation) • [Vue 3 Usage](#-usage-in-vue-3) • [Nuxt 3 Usage](#-usage-in-nuxt-3) • [API Reference](#-api-reference)
-
-</div>
-
 ---
 
-## ✨ Features
+## Features
 
-- ⚡ **Optimized Performance**: Built on top of [DataTables.net](https://datatables.net) with efficient DOM handling.
-- 🎨 **Premium Aesthetics**: Clean, modern design with custom Bootstrap 5 styling and smooth animations.
-- 📱 **Fully Responsive**: Intelligent column adjustment via `ResizeObserver` and native Responsive extension support.
-- 🧩 **Nuxt 3 & 4 Ready**: First-class support with a built-in auto-registering Nuxt module.
-- 🛠️ **Developer Friendly**: TypeScript-first with complete type definitions and an exposed public API.
-- 🌐 **SSR Friendly**: SEO-optimized with a smart server-side fallback table (prevents layout shifts).
-- 🌏 **Indonesian Locale**: Pre-configured with Indonesian localization (easily customizable).
+- Optimized performance using DataTables
+- Clean UI with Bootstrap 5 styling
+- Fully responsive layout
+- Nuxt 3 & 4 module support
+- TypeScript support
+- SSR-friendly rendering
+- Indonesian locale ready
 
 ---
 
