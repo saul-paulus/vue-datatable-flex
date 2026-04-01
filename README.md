@@ -70,7 +70,12 @@ app.mount("#app");
 
 ```vue
 <template>
-  <MainDataTable :data="userRows" :columns="userColumns" scroll-y="500px" @ready="onReady" />
+  <MainDataTable
+    :data="userRows"
+    :columns="userColumns"
+    scroll-y="500px"
+    @ready="onReady"
+  />
 </template>
 
 <script setup lang="ts">
