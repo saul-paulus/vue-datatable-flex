@@ -130,7 +130,6 @@ const { data: users } = await useFetch("/api/users");
 </template>
 ```
 
-> [!TIP]
 > **Universal Rendering Support:**
 > Version 0.1.4+ is fully SSR-aware. While the interactive DataTable initializes on the client, the component renders a semantic HTML table on the server. This ensures your data is **visible to search engines** and avoids Cumulative Layout Shift (CLS).
 
