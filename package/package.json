@@ -1,0 +1,116 @@
+{
+  "name": "@saulpaulus17/vue-datatables-flex",
+  "version": "1.0.1",
+  "description": "A flexible, responsive DataTable component for Vue 3 and Nuxt 3, powered by DataTables.net with Bootstrap 5 styling",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saul-paulus/vue-datatable-flex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saul-paulus/vue-datatable-flex/issues"
+  },
+  "homepage": "https://github.com/saul-paulus/vue-datatable-flex#readme",
+  "keywords": [
+    "vue",
+    "vue3",
+    "nuxt",
+    "nuxt3",
+    "datatable",
+    "datatables",
+    "bootstrap",
+    "bootstrap5",
+    "table",
+    "responsive",
+    "component"
+  ],
+  "author": "saul paulus (ixspx)",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/vue-datatables-flex.cjs.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/vue-datatables-flex.es.js",
+      "require": "./dist/vue-datatables-flex.cjs.js"
+    },
+    "./nuxt": {
+      "types": "./dist/types/nuxt.d.ts",
+      "import": "./dist/nuxt.es.js",
+      "require": "./dist/nuxt.cjs.js"
+    },
+    "./style.css": "./dist/vue-datatables-flex.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build:lib",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "test:nuxt": "vitest run test/nuxt.test.ts",
+    "test:e2e": "playwright test",
+    "type-check": "vue-tsc --build",
+    "lint": "run-s lint:*",
+    "lint:oxlint": "oxlint . --fix",
+    "lint:eslint": "eslint . --fix --cache",
+    "format": "oxfmt src/"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "datatables.net": "^2.3.7",
+    "datatables.net-bs5": "^2.3.7",
+    "datatables.net-responsive": "^3.0.8",
+    "datatables.net-responsive-bs5": "^3.0.8",
+    "datatables.net-select": "^3.1.3",
+    "datatables.net-select-bs5": "^3.1.3",
+    "datatables.net-vue3": "^3.0.4"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^4.0.0-alpha.3",
+    "@nuxt/kit": "^4.4.2",
+    "@nuxt/test-utils": "^4.0.0",
+    "@playwright/test": "^1.58.2",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/jquery": "^4.0.0",
+    "@types/jsdom": "^28.0.0",
+    "@types/node": "^24.12.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vitest/eslint-plugin": "^1.6.10",
+    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.9.0",
+    "esbuild-linux-64": "^0.15.18",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-oxlint": "~1.51.0",
+    "eslint-plugin-playwright": "^2.9.0",
+    "eslint-plugin-vue": "~10.8.0",
+    "jiti": "^2.6.1",
+    "jsdom": "^28.1.0",
+    "npm-run-all2": "^8.0.4",
+    "nuxi": "^3.34.0",
+    "nuxt": "^4.4.2",
+    "oxfmt": "^0.37.0",
+    "oxlint": "~1.51.0",
+    "typescript": "~5.9.3",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-vue-devtools": "^8.0.7",
+    "vitest": "^4.0.18",
+    "vue": "^3.5.30",
+    "vue-tsc": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
