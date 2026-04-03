@@ -47,47 +47,42 @@ Recommended for large applications using the component across multiple pages.
 
 ```ts
 // main.ts
-import { createApp } from "vue";
-import { VueDatatablesFlex } from "@saulpaulus17/vue-datatables-flex";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import { VueDatatablesFlex } from '@saulpaulus17/vue-datatables-flex'
+import App from './App.vue'
 
 // Import Required CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
 
-const app = createApp(App);
-app.use(VueDatatablesFlex);
-app.mount("#app");
+const app = createApp(App)
+app.use(VueDatatablesFlex)
+app.mount('#app')
 ```
 
 ### Basic Usage
 
 ```vue
 <template>
-  <MainDataTable
-    :data="userRows"
-    :columns="userColumns"
-    scroll-y="500px"
-    @ready="onReady"
-  />
+  <MainDataTable :data="userRows" :columns="userColumns" scroll-y="500px" @ready="onReady" />
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Column } from "@saulpaulus17/vue-datatables-flex";
+import { ref } from 'vue'
+import type { Column } from '@saulpaulus17/vue-datatables-flex'
 
 const userColumns: Column[] = [
-  { data: "id", title: "ID" },
-  { data: "name", title: "Full Name" },
-  { data: "email", title: "Email Address" },
-];
+  { data: 'id', title: 'ID' },
+  { data: 'name', title: 'Full Name' },
+  { data: 'email', title: 'Email Address' },
+]
 
 const userRows = ref([
-  { id: 1, name: "Ahmad", email: "ahmad@example.com" },
-  { id: 2, name: "Budi", email: "budi@example.com" },
-]);
+  { id: 1, name: 'Ahmad', email: 'ahmad@example.com' },
+  { id: 2, name: 'Budi', email: 'budi@example.com' },
+])
 
-const onReady = (dt: any) => console.log("Table instance:", dt);
+const onReady = (dt: any) => console.log('Table instance:', dt)
 </script>
 ```
 
@@ -102,17 +97,17 @@ The simplest way is to use the provided Nuxt module. It handles everything inclu
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ["@saulpaulus17/vue-datatables-flex/nuxt"],
+  modules: ['@saulpaulus17/vue-datatables-flex/nuxt'],
 
   // Optional: Module Configuration
   vueDatatablesFlex: {
-    componentName: "MainDataTable", // Use a custom component name
+    componentName: 'MainDataTable', // Use a custom component name
     addCss: true, // Automatically includes DataTables Bootstrap 5 CSS (default: true)
   },
 
   // You still need to include Bootstrap 5 CSS
-  css: ["bootstrap/dist/css/bootstrap.min.css"],
-});
+  css: ['bootstrap/dist/css/bootstrap.min.css'],
+})
 ```
 
 ### 2. Implementation
@@ -120,8 +115,8 @@ export default defineNuxtConfig({
 ```vue
 <!-- pages/users.vue -->
 <script setup lang="ts">
-const columns = [{ data: "name", title: "Name" }];
-const { data: users } = await useFetch("/api/users");
+const columns = [{ data: 'name', title: 'Name' }]
+const { data: users } = await useFetch('/api/users')
 </script>
 
 <template>
@@ -163,12 +158,12 @@ const { data: users } = await useFetch("/api/users");
 Access these by adding a `ref` to your component:
 
 ```ts
-const table = ref<InstanceType<typeof MainDataTable>>();
+const table = ref<InstanceType<typeof MainDataTable>>()
 
 // Methods
-table.value?.getInstance(); // Get raw DataTables API instance
-table.value?.reload(); // Reload AJAX data (if using server-side)
-table.value?.adjustColumns(); // recalculate column widths
+table.value?.getInstance() // Get raw DataTables API instance
+table.value?.reload() // Reload AJAX data (if using server-side)
+table.value?.adjustColumns() // recalculate column widths
 ```
 
 ---
@@ -178,15 +173,134 @@ table.value?.adjustColumns(); // recalculate column widths
 ```ts
 const columns: Column[] = [
   {
-    data: "status",
-    title: "Status",
-    className: "text-center",
+    data: 'status',
+    title: 'Status',
+    className: 'text-center',
     render: (data) => {
-      const color = data === "Active" ? "success" : "secondary";
-      return `<span class="badge bg-${color}">${data}</span>`;
+      const color = data === 'Active' ? 'success' : 'secondary'
+      return `<span class="badge bg-${color}">${data}</span>`
     },
   },
-];
+]
+```
+
+---
+
+## 🎨 Customizing DataTable with External CSS
+
+If you want to customize the DataTable appearance externally (e.g., in `main.css`), you can use the following style reference as a base (Compact Admin Style):
+
+```css
+/* =========================================================
+   DATATABLE - BOOTSTRAP 5.3 (COMPACT ADMIN STYLE)
+   ========================================================= */
+
+#custom-header th {
+  width: 100px;
+}
+
+.table-container {
+  overflow-x: auto;
+  display: block;
+  width: 100%;
+}
+
+table.dataTable {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+table.dataTable thead th {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #0d6efd !important;
+  color: #fff;
+  text-align: center;
+}
+
+table.dataTable tbody td {
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+table.dataTable th,
+table.dataTable td {
+  border: 1px solid #dee2e6;
+  padding: 8px 12px !important;
+}
+
+.merged-cell {
+  text-align: center;
+  vertical-align: middle !important;
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+table.dataTable tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* 
+.dt-search {
+  display: none !important;
+} */
+
+.pagination {
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.pagination .page-item {
+  margin: 0 2px;
+}
+
+.pagination .page-link {
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.dt-length {
+  font-size: 14px;
+}
+
+.dt-length .form-select {
+  font-size: 12px;
+  min-width: 70px !important;
+  border-radius: 4px;
+}
+
+/* Fallback for legacy DataTables classes if any */
+.dataTables_length select {
+  min-width: 80px !important;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  opacity: 0.5;
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+.table-compact table.dataTable th,
+.table-compact table.dataTable td {
+  padding: 4px 6px !important;
+  font-size: 14px;
+}
 ```
 
 ---

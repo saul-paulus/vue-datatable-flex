@@ -192,6 +192,125 @@ const columns: Column[] = [
 
 ---
 
+## 🎨 Customizing DataTable with External CSS
+
+If you want to customize the DataTable appearance externally (e.g., in `main.css`), you can use the following style reference as a base (Compact Admin Style):
+
+```css
+/* =========================================================
+   DATATABLE - BOOTSTRAP 5.3 (COMPACT ADMIN STYLE)
+   ========================================================= */
+
+#custom-header th {
+  width: 100px;
+}
+
+.table-container {
+  overflow-x: auto;
+  display: block;
+  width: 100%;
+}
+
+table.dataTable {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+table.dataTable thead th {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #0d6efd !important;
+  color: #fff;
+  text-align: center;
+}
+
+table.dataTable tbody td {
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+table.dataTable th,
+table.dataTable td {
+  border: 1px solid #dee2e6;
+  padding: 8px 12px !important;
+}
+
+.merged-cell {
+  text-align: center;
+  vertical-align: middle !important;
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+table.dataTable tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* 
+.dt-search {
+  display: none !important;
+} */
+
+.pagination {
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.pagination .page-item {
+  margin: 0 2px;
+}
+
+.pagination .page-link {
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.dt-length {
+  font-size: 14px;
+}
+
+.dt-length .form-select {
+  font-size: 12px;
+  min-width: 70px !important;
+  border-radius: 4px;
+}
+
+/* Fallback for legacy DataTables classes if any */
+.dataTables_length select {
+  min-width: 80px !important;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  opacity: 0.5;
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+.table-compact table.dataTable th,
+.table-compact table.dataTable td {
+  padding: 4px 6px !important;
+  font-size: 14px;
+}
+```
+
+---
+
 ## 🙋 Troubleshooting
 
 **"JQuery is not defined"**
