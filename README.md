@@ -1,5 +1,6 @@
 # @saulpaulus17/vue-datatables-flex
 
+![alt text](image.png)
 A high-performance, responsive DataTable component for Vue 3 and Nuxt 3/4.
 
 [![npm version](https://img.shields.io/npm/v/@saulpaulus17/vue-datatables-flex.svg?style=flat-square)](https://www.npmjs.com/package/@saulpaulus17/vue-datatables-flex)
