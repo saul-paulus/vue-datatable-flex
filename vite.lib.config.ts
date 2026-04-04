@@ -18,7 +18,7 @@ export default defineConfig({
       outDir: 'dist/types',
       tsconfigPath: './tsconfig.app.json',
       cleanVueFileName: true,
-      rollupTypes: false,
+      rollupTypes: true,
     }),
     // Custom plugin to copy runtime folder to dist
     {
@@ -96,7 +96,7 @@ export default defineConfig({
     // Generate sourcemaps for debugging
     sourcemap: true,
 
-    // Tidak diminify agar lebih mudah di-debug oleh user
-    minify: false,
+    // Minify output for production
+    minify: true,
   },
 })

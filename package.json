@@ -27,10 +27,10 @@
   "license": "MIT",
   "type": "module",
   "main": "./dist/vue-datatables-flex.cjs.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/types/vue-datatables-flex.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/types/vue-datatables-flex.d.ts",
       "import": "./dist/vue-datatables-flex.es.js",
       "require": "./dist/vue-datatables-flex.cjs.js"
     },
@@ -79,7 +79,7 @@
     "@nuxt/devtools": "^4.0.0-alpha.3",
     "@nuxt/kit": "^4.4.2",
     "@nuxt/test-utils": "^4.0.0",
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.59.1",
     "@tsconfig/node24": "^24.0.4",
     "@types/jquery": "^4.0.0",
     "@types/jsdom": "^28.0.0",
@@ -106,11 +106,14 @@
     "vite": "^6.2.0",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-vue-devtools": "^8.0.7",
-    "vitest": "^4.0.18",
+    "vitest": "^4.1.2",
     "vue": "^3.5.30",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.6"
   },
   "engines": {
     "node": ">=18"
+  },
+  "overrides": {
+    "srvx": "^0.11.13"
   }
 }

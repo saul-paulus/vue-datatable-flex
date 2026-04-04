@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import MainDataTable from '../MainDataTable.vue';
+import MainDataTable from '../../runtime/components/MainDataTable.vue';
 
 // Mock DataTables registration as it might fail in JSDOM or lack necessary globals
 vi.mock('datatables.net-vue3', () => ({
@@ -26,7 +26,7 @@ describe('MainDataTable.vue', () => {
     { id: 2, name: 'Item 2' }
   ];
 
-  it('renders correctly with default props', () => {
+  it('renders correctly with default props', async () => {
     const wrapper = mount(MainDataTable, {
       props: {
         columns,
@@ -34,8 +34,13 @@ describe('MainDataTable.vue', () => {
       }
     });
     
+    // Wait for onMounted and nextTick inside it
+    await wrapper.vm.$nextTick();
+    await wrapper.vm.$nextTick(); // One more for the internal async onMounted
+    
     expect(wrapper.find('.dt-wrapper').exists()).toBe(true);
-    expect(wrapper.findComponent({ name: 'DataTable' }).exists()).toBe(true);
+    // Since we mock it, we can look for the mock component
+    expect(wrapper.find('.datatable-mock').exists()).toBe(true);
   });
 
   it('shows loading overlay when loading prop is true', async () => {
@@ -52,7 +57,7 @@ describe('MainDataTable.vue', () => {
     expect(wrapper.find('.dt-loading-text').text()).toBe('Testing Loading...');
   });
 
-  it('applies custom classes correctly', () => {
+  it('applies custom classes correctly', async () => {
     const wrapper = mount(MainDataTable, {
       props: {
         columns,
@@ -62,9 +67,12 @@ describe('MainDataTable.vue', () => {
       }
     });
     
+    await wrapper.vm.$nextTick();
+    await wrapper.vm.$nextTick();
+    
     expect(wrapper.find('.dt-wrapper.custom-wrapper').exists()).toBe(true);
-    // The tableClass is passed to the DataTable component
-    const dtComponent = wrapper.findComponent({ name: 'DataTable' });
+    // The tableClass is passed to the DataTable component mock
+    const dtComponent = wrapper.find('.datatable-mock');
     expect(dtComponent.classes()).toContain('custom-table');
   });
 

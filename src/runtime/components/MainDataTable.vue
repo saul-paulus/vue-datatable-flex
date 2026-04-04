@@ -157,9 +157,8 @@ onMounted(async () => {
     if (containerRef.value) {
       resizeObserver = new ResizeObserver(() => {
         if (!dtInstance) return;
+        // Debounced or simple single adjust is usually enough with ResizeObserver
         dtInstance.columns.adjust();
-        setTimeout(() => dtInstance?.columns.adjust(), 150);
-        setTimeout(() => dtInstance?.columns.adjust(), 400);
       });
       resizeObserver.observe(containerRef.value);
     }
@@ -299,26 +298,26 @@ onBeforeUnmount(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  gap: var(--space-3, 1rem);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(4px);
-  border-radius: var(--radius-lg);
-  transition: var(--transition);
+  border-radius: var(--radius-lg, 0.5rem);
+  transition: var(--transition, all 0.3s ease);
 }
 
 .dt-loading-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--bg-mute);
-  border-top-color: var(--primary);
+  border: 3px solid var(--bg-mute, #f8f9fa);
+  border-top-color: var(--primary, #0d6efd);
   border-radius: 50%;
   animation: dt-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .dt-loading-text {
-  font-size: var(--fs-sm);
-  color: var(--text-soft);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm, 0.875rem);
+  color: var(--text-soft, #6c757d);
+  font-weight: var(--fw-medium, 500);
   letter-spacing: 0.025em;
 }
 
