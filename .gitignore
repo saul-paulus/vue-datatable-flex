@@ -40,3 +40,13 @@ __screenshots__/
 
 test-results/
 playwright-report/
+
+# Nuxt/Nitro
+.output
+.nuxt
+.nitro
+.data
+test/fixtures/**/.output
+test/fixtures/**/.nuxt
+test/fixtures/**/.nitro
+test/fixtures/**/.data

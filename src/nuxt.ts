@@ -19,6 +19,7 @@ export default defineNuxtModule<ModuleOptions>({
     componentName: 'MainDataTable',
     addCss: true
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setup(options: ModuleOptions, nuxt: any) {
     const resolver = createResolver(import.meta.url)
 

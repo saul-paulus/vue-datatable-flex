@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 <script setup lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import DataTableSource from "datatables.net-vue3";
 import DataTablesLib from "datatables.net-bs5";
@@ -96,10 +96,8 @@ const emit = defineEmits<{
 //  Refs (datatables API requires any)
 // ===================================================
 const containerRef = ref<HTMLElement | null>(null);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const datatableRef = ref<{ dt: any } | null>(null);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let dtInstance: Api<any> | null = null;
 let resizeObserver: ResizeObserver | null = null;
 

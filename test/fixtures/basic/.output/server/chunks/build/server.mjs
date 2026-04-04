@@ -224,7 +224,7 @@ function createNuxtApp(options) {
       }
     },
     payload: shallowReactive({
-      ...options.ssrContext?.payload || {},
+      ...options.ssrContext?.payload,
       data: shallowReactive({}),
       state: reactive({}),
       once: /* @__PURE__ */ new Set(),
