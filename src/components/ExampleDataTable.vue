@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MainDataTable from './MainDataTable.vue'
+import MainDataTable from '../runtime/components/MainDataTable.vue'
 
 import kaset from '../data/kaset.json'
 

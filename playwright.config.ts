@@ -37,7 +37,7 @@ export default defineConfig({
        limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5174',
+    baseURL: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5173',
 
     /* Collect trace when retrying the failed test. See
        https://playwright.dev/docs/trace-viewer */
@@ -109,7 +109,7 @@ export default defineConfig({
      * running.
      */
     command: process.env.CI ? 'npm run preview' : 'npm run dev',
-    port: process.env.CI ? 4173 : 5174,
+    port: process.env.CI ? 4173 : 5173,
     reuseExistingServer: !process.env.CI,
   },
 })

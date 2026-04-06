@@ -317,6 +317,16 @@ Ensure you've imported BOTH the Bootstrap 5 core CSS and the DataTables Bootstra
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions! Whether you're fixing a bug, adding a feature, or improving documentation, your help is appreciated.
+
+- **Found a bug?** [Open an issue](https://github.com/saul-paulus/vue-datatable-flex/issues).
+- **Want to contribute code?** Check our [Contributing Guide](CONTRIBUTING.md).
+- **Our Community:** Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+---
+
 ## 📄 License
 
 This package is open-sourced software licensed under the [MIT License](LICENSE).
