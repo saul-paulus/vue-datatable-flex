@@ -92,7 +92,7 @@ export interface DataTableOptions {
 //  Default Options (Indonesian locale)
 // ===================================================
 export const defaultOptions: DataTableOptions = {
-  processing: false,
+  processing: true,
   serverSide: false,
   displayLength: 50,
   scrollY: '65vh',

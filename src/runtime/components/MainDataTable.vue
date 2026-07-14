@@ -250,7 +250,6 @@ onBeforeUnmount(() => {
         <span class="dt-loading-text">{{ loadingText }}</span>
       </div>
     </Transition>
-
     <DataTableComponent
       v-if="isMounted"
       ref="datatableRef"
@@ -261,11 +260,18 @@ onBeforeUnmount(() => {
     >
       <slot />
     </DataTableComponent>
-
     <!-- SSR Fallback: Render a simple table to avoid layout shift -->
     <table
       v-else
-      :class="['table', 'table-hover', 'table-bordered', 'table-sm', 'w-100', 'dataTable', tableClass]"
+      :class="[
+        'table',
+        'table-hover',
+        'table-bordered',
+        'table-sm',
+        'w-100',
+        'dataTable',
+        tableClass,
+      ]"
     >
       <thead>
         <tr>
